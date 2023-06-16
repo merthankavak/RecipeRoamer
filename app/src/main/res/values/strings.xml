@@ -1,7 +1,11 @@
 <resources>
-    <string name="app_name">RecipeRoamer</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Recipe Roamer</string>
     <string name="home">Home</string>
     <string name="favorites">Favorites</string>
     <string name="info">Info</string>
+    <string name="search">Search</string>
+    <string name="welcome_text">Find your food!</string>
+    <string name="popular_food">Popular Food</string>
+    <string name="category">Category</string>
+    <string name="food">Food</string>
 </resources>

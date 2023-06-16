@@ -11,8 +11,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bottomNavigationBar = findViewById<BottomNavigationView>(R.id.bottom_nav_bar)
-        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        val bottomNavigationBar = findViewById<BottomNavigationView>(R.id.bottomNavBar)
+        val navController = Navigation.findNavController(this, R.id.navHostFragment)
 
         NavigationUI.setupWithNavController(bottomNavigationBar,navController)
 
