@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginStart="@dimen/_12sdp"
     android:layout_marginEnd="@dimen/_12sdp"
-    tools:context=".HomeFragment">
+    tools:context=".ui.home.HomeFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -75,6 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/orange"
+            android:scaleType="centerCrop"
             android:contentDescription="@string/food"/>
 
     </androidx.cardview.widget.CardView>
