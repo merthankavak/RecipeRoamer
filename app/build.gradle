@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -29,12 +31,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding = true
+    }
     namespace 'com.mkavaktech.reciperoamer'
 }
 
 dependencies {
-    def nav_version = '2.6.0'
-
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
@@ -46,4 +49,36 @@ dependencies {
     //Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    //Scalable Size
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
+    implementation 'com.intuit.ssp:ssp-android:1.1.0'
+
+    //Lottie
+    implementation("com.airbnb.android:lottie:$lottie_version")
+
+    //Retrofit
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
+
+    //JSON Converter
+    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
+
+    //Glide
+    implementation("com.github.bumptech.glide:glide:$glide_version")
+
+    // ViewModel and LiveData
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version")
+
+    // Dagger - Hilt
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
+
+}
+
+kapt {
+    correctErrorTypes = true
 }
