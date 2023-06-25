@@ -17,8 +17,7 @@
             android:layout_height="match_parent"
             app:contentScrim="@color/orange"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-            app:title="Food Name"
-          >
+            app:title="Food Name">
 
             <ImageView
                 android:id="@+id/foodDetailImageView"
@@ -36,6 +35,18 @@
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_favorites"
+            app:backgroundTint="@color/white"
+            app:fabSize="mini"
+            app:tint="@color/red"
+            app:layout_anchor="@id/appBar"
+            app:layout_anchorGravity="bottom|end"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:contentDescription="Add Favourite" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -48,8 +59,7 @@
         app:layout_anchor="@id/appBar"
         app:layout_anchorGravity="bottom|end"
         android:layout_marginEnd="@dimen/_10sdp"
-        android:contentDescription="Add Favourite"
-        />
+        android:contentDescription="Add Favourite" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
