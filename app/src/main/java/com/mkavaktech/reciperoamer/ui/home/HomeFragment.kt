@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.mkavaktech.reciperoamer.data.entities.Meal
 import com.mkavaktech.reciperoamer.databinding.FragmentHomeBinding
 import com.mkavaktech.reciperoamer.ui.food_details.FoodDetailsActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,6 +17,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val homeViewModel: HomeViewModel by viewModels()
+    private lateinit var randomFood: Meal
+
+    companion object {
+        const val foodId: String = "com.mkavaktech.reciperoamer.foodId"
+        const val foodName: String = "com.mkavaktech.reciperoamer.foodName"
+        const val foodThumb: String = "com.mkavaktech.reciperoamer.foodThumb"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,14 +44,18 @@ class HomeFragment : Fragment() {
     private fun onRandomFoodClick() {
         binding.randomFoodImage.setOnClickListener {
             val intent = Intent(activity, FoodDetailsActivity::class.java)
+            intent.putExtra(foodId, randomFood.idMeal)
+            intent.putExtra(foodName, randomFood.strMeal)
+            intent.putExtra(foodThumb, randomFood.strMealThumb)
             startActivity(intent)
         }
     }
 
     private fun observerRandomFood() {
         homeViewModel.randomFoodLiveData.observe(viewLifecycleOwner
-        ) { value ->
-            Glide.with(this@HomeFragment).load(value.strMealThumb).into(binding.randomFoodImage)
+        ) { food ->
+            Glide.with(this@HomeFragment).load(food.strMealThumb).into(binding.randomFoodImage)
+            this.randomFood = food
         }
     }
 

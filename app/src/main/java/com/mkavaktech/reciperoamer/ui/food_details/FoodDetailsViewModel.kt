@@ -1,7 +1,6 @@
-package com.mkavaktech.reciperoamer.ui.home
+package com.mkavaktech.reciperoamer.ui.food_details
 
 import android.util.Log
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,15 +13,15 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val foodRepository: FoodRepository): ViewModel() {
-    private var _randomFoodLiveData : MutableLiveData<Meal> = MutableLiveData<Meal>()
-    val randomFoodLiveData :LiveData<Meal> = _randomFoodLiveData
+class FoodDetailsViewModel  @Inject constructor(private val foodRepository: FoodRepository): ViewModel(){
+    private var _foodDetailsLiveData : MutableLiveData<Meal> = MutableLiveData<Meal>()
+    val foodDetailsLiveData : LiveData<Meal> = _foodDetailsLiveData
 
-    fun getRandomFood() {
+    fun getFoodDetails(foodId: String) {
         viewModelScope.launch {
-            when (val response = foodRepository.getRandomFood()) {
+            when (val response = foodRepository.getFoodDetails(foodId)) {
                 is Resource.Success -> {
-                    _randomFoodLiveData.value = response.data!!
+                    _foodDetailsLiveData.value = response.data!!
                 }
                 is Resource.Error -> {
                     Log.d("HomeViewModel", response.message!!)

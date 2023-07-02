@@ -12,4 +12,8 @@ class FoodRepository @Inject constructor(
     suspend fun getRandomFood() : Resource<Meal> {
         return remoteDataSource.getRandomFood()
     }
+
+    suspend fun getFoodDetails(foodId: String) : Resource<Meal> {
+        return remoteDataSource.getFoodDetails(foodId)
+    }
 }

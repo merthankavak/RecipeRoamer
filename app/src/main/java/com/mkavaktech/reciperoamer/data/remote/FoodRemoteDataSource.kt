@@ -26,4 +26,22 @@ class FoodRemoteDataSource @Inject constructor(private val foodService: FoodServ
         }
     }
 
+    suspend fun getFoodDetails(foodId: String) : Resource<Meal> {
+        try {
+            val response = foodService.getFoodDetails(foodId)
+            if (response.isSuccessful) {
+                val body  = response.body()
+                if (body != null) {
+                    val meal : Meal = body.meals.first()
+                    return Resource.Success(meal)
+                }
+            }
+
+            return Resource.Error("${response.code()} - ${response.message()}")
+
+        } catch (e: Exception) {
+            return Resource.Error("Network Error -> ${e.message ?: e.toString()}")
+        }
+    }
+
 }
