@@ -5,21 +5,21 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.mkavaktech.reciperoamer.data.entities.CategoryMeal
+import com.mkavaktech.reciperoamer.data.entities.FoodByCategory
 import com.mkavaktech.reciperoamer.databinding.PopularFoodsBinding
 
 class PopularFoodAdapter(private val listener: PopularFoodListener) :
     RecyclerView.Adapter<PopularFoodAdapter.PopularFoodViewHolder>() {
 
-    private val foodList = ArrayList<CategoryMeal>()
+    private val foodList = ArrayList<FoodByCategory>()
 
 
     interface PopularFoodListener {
-        fun onPopularFoodClick(popularFood: CategoryMeal)
+        fun onPopularFoodClick(popularFood: FoodByCategory)
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setFood(foodList: ArrayList<CategoryMeal>) {
+    fun setFood(foodList: ArrayList<FoodByCategory>) {
         this.foodList.clear()
         this.foodList.addAll(foodList)
         notifyDataSetChanged()
@@ -51,7 +51,7 @@ class PopularFoodAdapter(private val listener: PopularFoodListener) :
             }
         }
 
-        fun bind(item: CategoryMeal) {
+        fun bind(item: FoodByCategory) {
             binding.popularFoodTxt.text = item.strMeal
             Glide.with(binding.root).load(item.strMealThumb).into(binding.popularFoodImage)
         }

@@ -1,6 +1,7 @@
 package com.mkavaktech.reciperoamer.data.remote
 
 import com.mkavaktech.reciperoamer.data.entities.CategoryList
+import com.mkavaktech.reciperoamer.data.entities.FoodByCategoryList
 import com.mkavaktech.reciperoamer.data.entities.MealList
 import retrofit2.Response
 import retrofit2.http.GET
@@ -14,6 +15,11 @@ interface FoodService {
     suspend fun  getFoodDetails(@Query(value = "i") foodId:String) : Response<MealList>
 
     @GET("filter.php?")
-    suspend fun  getPopularFoods(@Query(value = "c") categoryName:String) : Response<CategoryList>
+    suspend fun  getFoodsByCategory(@Query(value = "c") categoryName:String) : Response<FoodByCategoryList>
+
+    @GET("categories.php")
+    suspend fun getCategories() : Response<CategoryList>
+
+
 
 }

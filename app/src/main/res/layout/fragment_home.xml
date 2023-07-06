@@ -12,137 +12,139 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/linearHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <TextView
-            android:id="@+id/homeTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/app_name"
-            android:textColor="@color/orange"
-            android:textSize="@dimen/_20ssp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/imageSearch"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/search"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_search" />
-
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/welcomeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_weight="1"
-        android:text="@string/welcome_text"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_15ssp"
-        app:layout_constraintStart_toStartOf="@+id/linearHeader"
-        app:layout_constraintTop_toBottomOf="@+id/linearHeader" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/randomFoodCard"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_150sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:cardCornerRadius="@dimen/_10sdp"
-        android:elevation="@dimen/_5sdp"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeTextView">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/randomFoodImage"
+            <LinearLayout
+                android:id="@+id/linearHeader"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/orange"
-                android:scaleType="centerCrop"
-                android:contentDescription="@string/food"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/image_gradient_overlay" />
+
+                <TextView
+                    android:id="@+id/homeTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/app_name"
+                    android:textColor="@color/orange"
+                    android:textSize="@dimen/_20ssp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imageSearch"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/search"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_search" />
+
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/randomFoodTxt"
+                android:id="@+id/welcomeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Food Name"
-                android:textSize="@dimen/_12ssp"
-                android:layout_gravity="start|bottom"
-                android:padding="@dimen/_8sdp"
-                android:textColor="@color/white" />
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_weight="1"
+                android:text="@string/welcome_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintStart_toStartOf="@+id/linearHeader"
+                app:layout_constraintTop_toBottomOf="@+id/linearHeader" />
 
-        </FrameLayout>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/randomFoodCard"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_130sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:elevation="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/welcomeTextView">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/randomFoodImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/orange"
+                        android:contentDescription="@string/food"
+                        android:scaleType="centerCrop" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/image_gradient_overlay" />
+
+                    <TextView
+                        android:id="@+id/randomFoodTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|bottom"
+                        android:padding="@dimen/_8sdp"
+                        android:text="@string/food"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp" />
+
+                </FrameLayout>
 
 
+            </androidx.cardview.widget.CardView>
 
-    </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/popularFoodTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_weight="1"
+                android:text="@string/popular_food"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintStart_toStartOf="@+id/randomFoodCard"
+                app:layout_constraintTop_toBottomOf="@+id/randomFoodCard" />
 
-    <TextView
-        android:id="@+id/popularFoodTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:layout_weight="1"
-        android:text="@string/popular_food"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_15ssp"
-        app:layout_constraintStart_toStartOf="@+id/randomFoodCard"
-        app:layout_constraintTop_toBottomOf="@+id/randomFoodCard" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/popularFoodsRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@+id/popularFoodTextView"
+                app:layout_constraintTop_toBottomOf="@+id/popularFoodTextView" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/popularFoodRecView"
-        android:layout_marginTop="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_80sdp"
-        app:layout_constraintStart_toStartOf="@+id/popularFoodTextView"
-        app:layout_constraintTop_toBottomOf="@+id/popularFoodTextView"/>
+            <TextView
+                android:id="@+id/categoryTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_weight="1"
+                android:text="@string/categories"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintStart_toStartOf="@+id/popularFoodsRecView"
+                app:layout_constraintTop_toBottomOf="@+id/popularFoodsRecView" />
 
-    <TextView
-        android:id="@+id/categoryTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:layout_weight="1"
-        android:text="@string/category"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_15ssp"
-        app:layout_constraintStart_toStartOf="@+id/popularFoodRecView"
-        app:layout_constraintTop_toBottomOf="@+id/popularFoodRecView" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categoryRecView"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_80sdp"
-        app:layout_constraintStart_toStartOf="@+id/categoryTextView"
-        app:layout_constraintTop_toBottomOf="@+id/categoryTextView"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/categoriesRecView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="@+id/categoryTextView"
+                app:layout_constraintTop_toBottomOf="@+id/categoryTextView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.core.widget.NestedScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

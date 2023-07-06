@@ -17,7 +17,15 @@
 
     <style name="CollapsedAppBar" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">@dimen/_18ssp</item>
+        <item name="android:background">?attr/colorPrimary</item>
         <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:textSize">@dimen/_18ssp</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">normal</item>
     </style>
 
