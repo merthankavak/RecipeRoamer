@@ -22,17 +22,16 @@ import com.mkavaktech.reciperoamer.ui.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 
-
 @AndroidEntryPoint
 class FoodDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFoodDetailsBinding
 
-    private val foodDetailsViewModel : FoodDetailsViewModel by viewModels()
+    private val foodDetailsViewModel: FoodDetailsViewModel by viewModels()
 
     private lateinit var foodId: String
     private lateinit var foodName: String
-    private lateinit var  foodThumb: String
+    private lateinit var foodThumb: String
     private lateinit var videoLink: String
 
     @SuppressLint("MissingInflatedId")
@@ -41,16 +40,24 @@ class FoodDetailsActivity : AppCompatActivity() {
         binding = ActivityFoodDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolBar)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.collapsingToolBar.setCollapsedTitleTextColor(ContextCompat.getColor(this, R.color.white))
-
         getFoodInfoFromIntent()
+        setupToolBarSettings()
         setFoodInfo()
 
         foodDetailsViewModel.getFoodDetails(foodId)
         observeFoodDetails()
+    }
+
+    private fun setupToolBarSettings() {
+        val toolbar = findViewById<Toolbar>(R.id.toolBar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.collapsingToolBar.setCollapsedTitleTextColor(
+            ContextCompat.getColor(
+                this,
+                R.color.white
+            )
+        )
     }
 
     private fun observeFoodDetails() {
@@ -85,10 +92,14 @@ class FoodDetailsActivity : AppCompatActivity() {
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.food_details_menu,menu)
+        menuInflater.inflate(R.menu.food_details_menu, menu)
         val actionButton = menu?.findItem(R.id.actionVideo)
         val color = ContextCompat.getColor(this, R.color.white)
-        actionButton?.icon?.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(color, BlendModeCompat.SRC_ATOP)
+        actionButton?.icon?.colorFilter =
+            BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                color,
+                BlendModeCompat.SRC_ATOP
+            )
         return true
     }
 
@@ -98,6 +109,7 @@ class FoodDetailsActivity : AppCompatActivity() {
                 onBackPressed()
                 return true
             }
+
             R.id.actionVideo -> {
                 videoOnClick()
                 return true
@@ -105,7 +117,6 @@ class FoodDetailsActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
 
 
 }

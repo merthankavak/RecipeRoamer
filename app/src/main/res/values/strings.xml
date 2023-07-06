@@ -5,7 +5,8 @@
     <string name="info">Info</string>
     <string name="search">Search</string>
     <string name="welcome_text">Find your food!</string>
-    <string name="popular_food">Popular Food</string>
+    <string name="popular_food">Popular Foods</string>
+    <string name="categories">Categories</string>
     <string name="category">Category</string>
     <string name="food">Food</string>
     <string name="add_favourite">Add Favourite</string>
