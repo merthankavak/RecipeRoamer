@@ -51,7 +51,7 @@
         android:id="@+id/welcomeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_weight="1"
         android:text="@string/welcome_text"
         android:textColor="@color/black"
@@ -65,18 +65,41 @@
         android:layout_height="@dimen/_150sdp"
         android:layout_marginTop="@dimen/_10sdp"
         app:cardCornerRadius="@dimen/_10sdp"
-        app:cardUseCompatPadding="true"
+        android:elevation="@dimen/_5sdp"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeTextView">
 
-        <ImageView
-            android:id="@+id/randomFoodImage"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/orange"
-            android:scaleType="centerCrop"
-            android:contentDescription="@string/food"/>
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/randomFoodImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/orange"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/food"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/image_gradient_overlay" />
+
+            <TextView
+                android:id="@+id/randomFoodTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Food Name"
+                android:textSize="@dimen/_12ssp"
+                android:layout_gravity="start|bottom"
+                android:padding="@dimen/_8sdp"
+                android:textColor="@color/white" />
+
+        </FrameLayout>
+
+
 
     </androidx.cardview.widget.CardView>
 
@@ -84,7 +107,7 @@
         android:id="@+id/popularFoodTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/_12sdp"
         android:layout_weight="1"
         android:text="@string/popular_food"
         android:textColor="@color/black"
@@ -104,7 +127,7 @@
         android:id="@+id/categoryTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/_12sdp"
         android:layout_weight="1"
         android:text="@string/category"
         android:textColor="@color/black"
@@ -114,7 +137,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecView"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/_12sdp"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_80sdp"
         app:layout_constraintStart_toStartOf="@+id/categoryTextView"
