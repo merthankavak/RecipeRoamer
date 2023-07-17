@@ -77,6 +77,9 @@ dependencies {
     implementation("com.google.dagger:hilt-android:$hilt_version")
     kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
 
+    // Bubble Tabbar
+    implementation("io.ak1:bubbletabbar:$buble_tabbar_version")
+
 }
 
 kapt {

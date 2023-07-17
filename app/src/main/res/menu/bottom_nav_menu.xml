@@ -2,13 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="@string/home"
         android:icon="@drawable/ic_home"
-        android:id="@+id/homeFragment" />
+        android:id="@+id/homeFragment"
+        android:color="@color/orange"
+        android:checked="true" />
 
     <item android:title="@string/favorites"
         android:icon="@drawable/ic_favorites"
-        android:id="@+id/favouritesFragment"/>
+        android:id="@+id/favouritesFragment"
+        android:color="@color/red"/>
     <item
         android:id="@+id/infoFragment"
         android:icon="@drawable/ic_info"
-        android:title="@string/info" />
+        android:title="@string/info"
+        android:color="@color/teal_700"/>
 </menu>
