@@ -1,4 +1,4 @@
-package com.mkavaktech.reciperoamer.ui.info
+package com.mkavaktech.reciperoamer.presentation.info
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.mkavaktech.reciperoamer.ui.category
+package com.mkavaktech.reciperoamer.presentation.category
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

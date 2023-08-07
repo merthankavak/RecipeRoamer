@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.food_details.FoodDetailsActivity">
+    tools:context=".presentation.food_details.FoodDetailsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
-        android:backgroundTint="@color/orange"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_200sdp">
 
@@ -16,8 +15,7 @@
             android:id="@+id/collapsingToolBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="@color/orange"
-            app:expandedTitleTextAppearance="@style/CollapsedAppBar"
+            app:expandedTitleTextAppearance="@style/CollapsedAppBarTextAppearance"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:title="Food Name">
 

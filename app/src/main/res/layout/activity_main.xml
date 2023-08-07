@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
+    tools:context=".presentation.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/navHostFragment"
@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:bubbletab_menuResource="@menu/bottom_nav_menu"
-        app:bubbletab_icon_size="@dimen/_14sdp"
+        app:bubbletab_icon_size="@dimen/_18sdp"
         app:bubbletab_title_size="@dimen/_12ssp"
         app:bubbletab_tab_corner_radius="@dimen/_20sdp"
         app:bubbletab_horizontal_padding="@dimen/_20sdp" />
