@@ -1,25 +1,29 @@
-package com.mkavaktech.reciperoamer.ui.food_details
+package com.mkavaktech.reciperoamer.presentation.food_details
 
 import android.annotation.SuppressLint
 import android.content.Intent
+
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+
 import androidx.core.content.ContextCompat
+
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 
 import com.bumptech.glide.Glide
 import com.mkavaktech.reciperoamer.R
+import com.mkavaktech.reciperoamer.data.entities.Meal
 import com.mkavaktech.reciperoamer.databinding.ActivityFoodDetailsBinding
-import com.mkavaktech.reciperoamer.ui.home.HomeFragment
+import com.mkavaktech.reciperoamer.presentation.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
+import es.dmoral.toasty.Toasty
 
 
 @AndroidEntryPoint
@@ -34,6 +38,9 @@ class FoodDetailsActivity : AppCompatActivity() {
     private lateinit var foodThumb: String
     private lateinit var videoLink: String
 
+    private var foodForFavorite: Meal? = null
+    private var isFoodFavorite: Boolean = false
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,27 +53,65 @@ class FoodDetailsActivity : AppCompatActivity() {
 
         foodDetailsViewModel.getFoodDetails(foodId)
         observeFoodDetails()
+        observeFavFood()
+        favoriteOnClick()
     }
 
+    private fun observeFavFood() {
+        foodDetailsViewModel.getFavoriteFood(foodId)
+        foodDetailsViewModel.foodFavoriteLiveData.observe(this) { food ->
+            if (food != null) {
+                isFoodFavorite = true
+                binding.addFavBtn.setImageResource(R.drawable.ic_favorites_on)
+            }
+        }
+    }
+
+    private fun favoriteOnClick() {
+        binding.addFavBtn.setOnClickListener {
+
+            if (!isFoodFavorite) {
+                foodForFavorite?.let {
+                    foodDetailsViewModel.addToFavoriteFood(it)
+                    isFoodFavorite = true
+                    binding.addFavBtn.setImageResource(R.drawable.ic_favorites_on)
+
+                    Toasty.success(
+                        this, "Added to favorites successfully!", Toast.LENGTH_SHORT, true
+                    ).show()
+                }
+            } else {
+                foodForFavorite?.let {
+                    foodDetailsViewModel.removeFavoriteFood(it)
+                    isFoodFavorite = false
+                    binding.addFavBtn.setImageResource(R.drawable.ic_favorites)
+                    Toasty.warning(this, "Removed from favorites!", Toast.LENGTH_SHORT, true).show()
+                }
+            }
+        }
+    }
+
+
     private fun setupToolBarSettings() {
-        val toolbar = findViewById<Toolbar>(R.id.toolBar)
+        val toolbar = binding.toolBar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.collapsingToolBar.setCollapsedTitleTextColor(
             ContextCompat.getColor(
-                this,
-                R.color.white
+                this, R.color.white
             )
         )
     }
 
+
     private fun observeFoodDetails() {
 
         foodDetailsViewModel.foodDetailsLiveData.observe(this) { food ->
-            binding.categoryTxtView.text = "Category: ${food.strCategory}"
-            binding.cuisineTxtView.text = "Cuisine: ${food.strArea}"
+            "Category: ${food.strCategory}".also { binding.categoryTxtView.text = it }
+            "Cuisine: ${food.strArea}".also { binding.cuisineTxtView.text = it }
             binding.instrTxtView.text = food.strInstructions
-            videoLink = food.strYoutube
+            videoLink = food.strYoutube!!
+            foodForFavorite = food
         }
 
     }
@@ -85,9 +130,13 @@ class FoodDetailsActivity : AppCompatActivity() {
 
     private fun videoOnClick() {
         Log.d("video", "videoOnClick: $videoLink")
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(videoLink))
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        startActivity(intent)
+        if (videoLink.isBlank()) {
+            Toasty.error(this, "Video not found!", Toast.LENGTH_SHORT, true).show()
+        } else {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(videoLink))
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        }
     }
 
 
@@ -97,8 +146,7 @@ class FoodDetailsActivity : AppCompatActivity() {
         val color = ContextCompat.getColor(this, R.color.white)
         actionButton?.icon?.colorFilter =
             BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                color,
-                BlendModeCompat.SRC_ATOP
+                color, BlendModeCompat.SRC_ATOP
             )
         return true
     }

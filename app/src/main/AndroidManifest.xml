@@ -17,13 +17,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ui.category.CategoryActivity"
+            android:name=".presentation.category.CategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.food_details.FoodDetailsActivity"
+            android:name=".presentation.food_details.FoodDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

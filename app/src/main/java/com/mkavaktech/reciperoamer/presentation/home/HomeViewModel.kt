@@ -1,4 +1,4 @@
-package com.mkavaktech.reciperoamer.ui.home
+package com.mkavaktech.reciperoamer.presentation.home
 
 import android.util.Log
 
@@ -67,7 +67,12 @@ class HomeViewModel @Inject constructor(private val foodRepository: FoodReposito
         viewModelScope.launch {
             when (val response = foodRepository.getFoodsByCategory(getRandomCategory())) {
                 is Resource.Success -> {
-                    _popularFoodLiveData.value = response.data!!
+                    val popularFoodList = if (response.data!!.size > 5) {
+                        response.data.shuffled().take(5)
+                    } else {
+                        response.data
+                    }
+                    _popularFoodLiveData.value = popularFoodList
                 }
 
                 is Resource.Error -> {

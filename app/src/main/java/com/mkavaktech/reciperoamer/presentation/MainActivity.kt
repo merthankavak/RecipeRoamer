@@ -1,4 +1,4 @@
-package com.mkavaktech.reciperoamer.ui
+package com.mkavaktech.reciperoamer.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

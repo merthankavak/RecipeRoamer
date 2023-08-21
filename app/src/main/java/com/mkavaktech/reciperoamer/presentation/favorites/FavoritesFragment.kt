@@ -1,4 +1,4 @@
-package com.mkavaktech.reciperoamer.ui.favorites
+package com.mkavaktech.reciperoamer.presentation.favorites
 
 import android.os.Bundle
 import android.view.LayoutInflater

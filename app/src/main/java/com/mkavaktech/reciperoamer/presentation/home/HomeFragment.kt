@@ -1,4 +1,4 @@
-package com.mkavaktech.reciperoamer.ui.home
+package com.mkavaktech.reciperoamer.presentation.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,9 +14,9 @@ import com.mkavaktech.reciperoamer.data.entities.Category
 import com.mkavaktech.reciperoamer.data.entities.FoodByCategory
 import com.mkavaktech.reciperoamer.data.entities.Meal
 import com.mkavaktech.reciperoamer.databinding.FragmentHomeBinding
-import com.mkavaktech.reciperoamer.ui.category.CategoryActivity
-import com.mkavaktech.reciperoamer.ui.category.CategoryAdapter
-import com.mkavaktech.reciperoamer.ui.food_details.FoodDetailsActivity
+import com.mkavaktech.reciperoamer.presentation.category.CategoryActivity
+import com.mkavaktech.reciperoamer.presentation.category.CategoryAdapter
+import com.mkavaktech.reciperoamer.presentation.food_details.FoodDetailsActivity
 import com.mkavaktech.reciperoamer.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 

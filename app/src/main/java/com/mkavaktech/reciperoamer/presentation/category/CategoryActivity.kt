@@ -1,4 +1,4 @@
-package com.mkavaktech.reciperoamer.ui.category
+package com.mkavaktech.reciperoamer.presentation.category
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,13 +6,12 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mkavaktech.reciperoamer.R
 import com.mkavaktech.reciperoamer.data.entities.FoodByCategory
 import com.mkavaktech.reciperoamer.databinding.ActivityCategoryBinding
-import com.mkavaktech.reciperoamer.ui.food_details.FoodDetailsActivity
-import com.mkavaktech.reciperoamer.ui.home.HomeFragment
+import com.mkavaktech.reciperoamer.presentation.food_details.FoodDetailsActivity
+import com.mkavaktech.reciperoamer.presentation.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,11 +38,7 @@ class CategoryActivity : AppCompatActivity(), CategoryFoodAdapter.CategoryFoodLi
         val toolbar = findViewById<Toolbar>(R.id.categoryToolBar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.categoryToolBar.setTitleTextColor(
-            ContextCompat.getColor(
-                this, R.color.white
-            )
-        )
+
         binding.categoryToolBar.title = categoryName
     }
 

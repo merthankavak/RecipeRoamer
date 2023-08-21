@@ -15,18 +15,24 @@
         <item name="android:colorControlNormal">@color/white</item>
     </style>
 
-    <style name="CollapsedAppBar" parent="@android:style/TextAppearance.Medium">
+    <style name="CollapsedAppBarTextAppearance" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">@dimen/_18ssp</item>
-        <item name="android:background">?attr/colorPrimary</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">normal</item>
     </style>
 
     <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
-        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:textSize">@dimen/_18ssp</item>
-        <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">normal</item>
+        <item name="titleTextAppearance">@style/ToolbarTextAppearance</item>
+        <item name="android:elevation">0dp</item>
+        <item name="navigationIconTint">@color/blackOlive</item>
+
+    </style>
+
+    <style name="ToolbarTextAppearance" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/blackOlive</item>
     </style>
 
 </resources>

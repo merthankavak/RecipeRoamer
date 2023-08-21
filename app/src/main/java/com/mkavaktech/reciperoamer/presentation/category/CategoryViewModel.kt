@@ -1,4 +1,4 @@
-package com.mkavaktech.reciperoamer.ui.category
+package com.mkavaktech.reciperoamer.presentation.category
 
 import android.util.Log
 import androidx.lifecycle.LiveData

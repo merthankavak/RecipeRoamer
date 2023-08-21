@@ -5,24 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".ui.category.CategoryActivity">
+    tools:context=".presentation.category.CategoryActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/categoryAppBar"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/categoryToolBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/categoryToolBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:expandedTitleTextAppearance="@style/ToolbarStyle"
-            app:title="@string/category"
-
-            />
-
-    </com.google.android.material.appbar.AppBarLayout>
+        android:layout_height="?attr/actionBarSize"
+        style="@style/ToolbarStyle"
+        app:expandedTitleTextAppearance="@style/ToolbarTextAppearance"
+        app:title="@string/category"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecView"
@@ -33,6 +25,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/categoryAppBar" />
+        app:layout_constraintTop_toBottomOf="@id/categoryToolBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
