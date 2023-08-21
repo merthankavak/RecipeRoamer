@@ -27,12 +27,11 @@
         <item name="android:textStyle">normal</item>
         <item name="titleTextAppearance">@style/ToolbarTextAppearance</item>
         <item name="android:elevation">0dp</item>
-        <item name="navigationIconTint">@color/blackOlive</item>
-
+        <item name="navigationIconTint">@color/orange</item>
     </style>
 
     <style name="ToolbarTextAppearance" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="android:textColor">@color/blackOlive</item>
+        <item name="android:textColor">@color/orange</item>
     </style>
 
 </resources>

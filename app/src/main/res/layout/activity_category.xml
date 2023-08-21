@@ -11,9 +11,9 @@
         android:id="@+id/categoryToolBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        style="@style/ToolbarStyle"
-        app:expandedTitleTextAppearance="@style/ToolbarTextAppearance"
         app:title="@string/category"
+        style="@style/ToolbarStyle"
+        app:titleTextColor="@color/orange"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -54,9 +54,9 @@ class HomeFragment : Fragment(), PopularFoodAdapter.PopularFoodListener,
         homeViewModel.getPopularFoods()
         homeViewModel.getCategories()
 
-        observerRandomFood()
-        observerPopularFood()
-        observerCategories()
+        observeRandomFood()
+        observePopularFood()
+        observeCategories()
 
         onRandomFoodClick()
     }
@@ -76,7 +76,7 @@ class HomeFragment : Fragment(), PopularFoodAdapter.PopularFoodListener,
     }
 
 
-    private fun observerRandomFood() {
+    private fun observeRandomFood() {
         homeViewModel.randomFoodLiveData.observe(
             viewLifecycleOwner
         ) { food ->
@@ -86,7 +86,7 @@ class HomeFragment : Fragment(), PopularFoodAdapter.PopularFoodListener,
         }
     }
 
-    private fun observerPopularFood() {
+    private fun observePopularFood() {
         homeViewModel.popularFoodLiveData.observe(
             viewLifecycleOwner
         ) { foodList ->
@@ -94,7 +94,7 @@ class HomeFragment : Fragment(), PopularFoodAdapter.PopularFoodListener,
         }
     }
 
-    private fun observerCategories() {
+    private fun observeCategories() {
         homeViewModel.categoriesLiveData.observe(
             viewLifecycleOwner
         ) { categories ->

@@ -51,8 +51,10 @@ class FoodDetailsViewModel @Inject constructor(private val foodRepository: FoodR
 
     fun getFavoriteFood(mealId: String) {
         viewModelScope.launch {
-            val favoriteFood: Meal = foodRepository.getFavoriteFood(mealId)
-            _foodFavoriteLiveData.value = favoriteFood
+            withContext(Dispatchers.IO) {
+                val favoriteFood: Meal = foodRepository.getFavoriteFood(mealId)
+                _foodFavoriteLiveData.postValue(favoriteFood)
+            }
         }
     }
 

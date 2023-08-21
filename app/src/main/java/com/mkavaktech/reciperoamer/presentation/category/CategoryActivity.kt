@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
-import com.mkavaktech.reciperoamer.R
 import com.mkavaktech.reciperoamer.data.entities.FoodByCategory
 import com.mkavaktech.reciperoamer.databinding.ActivityCategoryBinding
 import com.mkavaktech.reciperoamer.presentation.food_details.FoodDetailsActivity
@@ -35,7 +33,7 @@ class CategoryActivity : AppCompatActivity(), CategoryFoodAdapter.CategoryFoodLi
     }
 
     private fun setupToolBarSettings() {
-        val toolbar = findViewById<Toolbar>(R.id.categoryToolBar)
+        val toolbar = binding.categoryToolBar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

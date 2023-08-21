@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/favItemSwipeRevealLayout"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_90sdp"
+    android:elevation="@dimen/_5sdp"
+    android:padding="@dimen/_2sdp"
+    app:dragEdge="right"
+    app:mode="normal">
+
+    <FrameLayout
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="match_parent"
+        android:background="@color/red">
+
+        <ImageView
+            android:id="@+id/favSwipeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/food"
+            app:srcCompat="@drawable/ic_delete"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/favFoodCard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/favFoodImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/orange"
+                    android:contentDescription="@string/food"
+                    android:scaleType="centerCrop" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/image_gradient_overlay" />
+
+                <TextView
+                    android:id="@+id/favFoodTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|bottom"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@string/food"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+
+            </FrameLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
+</com.chauthai.swipereveallayout.SwipeRevealLayout>
+
+

@@ -2,7 +2,6 @@ package com.mkavaktech.reciperoamer.presentation.food_details
 
 import android.annotation.SuppressLint
 import android.content.Intent
-
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -11,12 +10,9 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.core.content.ContextCompat
-
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
-
 import com.bumptech.glide.Glide
 import com.mkavaktech.reciperoamer.R
 import com.mkavaktech.reciperoamer.data.entities.Meal
@@ -52,13 +48,16 @@ class FoodDetailsActivity : AppCompatActivity() {
         setFoodInfo()
 
         foodDetailsViewModel.getFoodDetails(foodId)
+        foodDetailsViewModel.getFavoriteFood(foodId)
+
         observeFoodDetails()
         observeFavFood()
         favoriteOnClick()
     }
 
+
     private fun observeFavFood() {
-        foodDetailsViewModel.getFavoriteFood(foodId)
+
         foodDetailsViewModel.foodFavoriteLiveData.observe(this) { food ->
             if (food != null) {
                 isFoodFavorite = true
