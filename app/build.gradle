@@ -90,6 +90,8 @@ dependencies {
     // Toasty
     implementation("com.github.GrenderG:Toasty:$toasty_version")
 
+    // Swipe Reveal Layout
+    implementation("com.chauthai.swipereveallayout:swipe-reveal-layout:$swipe_reveal_layout_version")
 
 }
 

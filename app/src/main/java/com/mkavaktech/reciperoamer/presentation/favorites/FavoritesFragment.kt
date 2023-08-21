@@ -1,60 +1,90 @@
 package com.mkavaktech.reciperoamer.presentation.favorites
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import androidx.fragment.app.Fragment
-import com.mkavaktech.reciperoamer.R
+import androidx.fragment.app.viewModels
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FavouritesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class FavouritesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+import androidx.recyclerview.widget.LinearLayoutManager
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+import com.google.android.material.snackbar.Snackbar
+
+import com.mkavaktech.reciperoamer.data.entities.Meal
+
+import com.mkavaktech.reciperoamer.databinding.FragmentFavouritesBinding
+import com.mkavaktech.reciperoamer.presentation.food_details.FoodDetailsActivity
+import com.mkavaktech.reciperoamer.presentation.home.HomeFragment
+import dagger.hilt.android.AndroidEntryPoint
+
+
+@AndroidEntryPoint
+class FavouritesFragment : Fragment(), FavoriteFoodsAdapter.FavoriteFoodsListener
+{
+    private lateinit var binding: FragmentFavouritesBinding
+    private val favoritesViewModel: FavoritesViewModel by viewModels()
+
+    private lateinit var favoriteFoodsAdapter: FavoriteFoodsAdapter
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentFavouritesBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        favoritesViewModel.getFavoriteFoods()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        favoriteFoodsAdapter = FavoriteFoodsAdapter(this)
+        setupRecyclerView()
+        observeFavFoodList()
+
+    }
+
+    private fun observeFavFoodList() {
+        favoritesViewModel.favoritesFoodLiveData.observe(viewLifecycleOwner) { favFoodList ->
+            favoriteFoodsAdapter.setFavFood(favFoodList as ArrayList<Meal>)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favourites, container, false)
+    private fun setupRecyclerView() {
+        binding.favFoodsRecView.apply {
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+            adapter = favoriteFoodsAdapter
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FavouritesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FavouritesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onFavoriteFoodsClick(meal: Meal) {
+        val intent = Intent(activity, FoodDetailsActivity::class.java)
+        intent.putExtra(HomeFragment.foodId, meal.idMeal)
+        intent.putExtra(HomeFragment.foodName, meal.strMeal)
+        intent.putExtra(HomeFragment.foodThumb, meal.strMealThumb)
+        startActivity(intent)
+    }
+
+    override fun onFavIconClick(adapterPosition: Int) {
+        val deletedFood: Meal = favoriteFoodsAdapter.foodList()[adapterPosition]
+        favoriteFoodsAdapter.removeItem(adapterPosition)
+        Snackbar.make(
+            binding.favFoodsRecView, "Removed from favorites: " + deletedFood.strMeal, Snackbar.LENGTH_LONG
+        ).setAction(
+            "Undo"
+        ) {
+            favoriteFoodsAdapter.addItem(adapterPosition, deletedFood)
+            favoritesViewModel.addToFavoriteFood(deletedFood)
+        }.setBackgroundTint(Color.RED).setActionTextColor(Color.BLACK).show()
+        favoritesViewModel.removeFavoriteFood(deletedFood)
     }
 }

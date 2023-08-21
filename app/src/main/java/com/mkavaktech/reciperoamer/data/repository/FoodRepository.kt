@@ -37,7 +37,7 @@ class FoodRepository @Inject constructor(
     suspend fun removeFavoriteFood(meal: Meal) = localDataSource.deleteMeal(meal)
 
 
-    suspend fun getFavoritesFoods(): List<Meal> = localDataSource.getAllMeals()
+    suspend fun getFavoriteFoods(): List<Meal> = localDataSource.getAllMeals()
 
 
 }
