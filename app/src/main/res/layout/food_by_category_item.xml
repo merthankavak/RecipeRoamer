@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/categoryCard"
+    android:id="@+id/foodByCategoryCard"
     android:layout_width="@dimen/_100sdp"
-    android:layout_height="@dimen/_70sdp"
+    android:layout_height="@dimen/_160sdp"
     android:elevation="@dimen/_5sdp"
     app:cardCornerRadius="@dimen/_10sdp"
     app:cardUseCompatPadding="true">
 
     <ImageView
-        android:id="@+id/categoryImage"
+        android:id="@+id/foodByCategoryImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/orange"
-        android:contentDescription="@string/category"
+        android:contentDescription="@string/food"
         android:scaleType="centerCrop" />
 
     <View
@@ -22,14 +22,13 @@
         android:background="@drawable/image_gradient_overlay" />
 
     <TextView
-        android:id="@+id/categoryTxt"
+        android:id="@+id/foodByCategoryTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start|bottom"
         android:padding="@dimen/_8sdp"
-        android:text="@string/category"
+        android:text="@string/food"
         android:textColor="@color/white"
         android:textSize="@dimen/_10ssp" />
-
 
 </androidx.cardview.widget.CardView>

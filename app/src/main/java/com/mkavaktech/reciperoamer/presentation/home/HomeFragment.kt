@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.mkavaktech.reciperoamer.R
 import com.mkavaktech.reciperoamer.data.entities.Category
 import com.mkavaktech.reciperoamer.data.entities.FoodByCategory
 import com.mkavaktech.reciperoamer.data.entities.Meal
@@ -45,13 +47,8 @@ class HomeFragment : Fragment(), PopularFoodAdapter.PopularFoodListener,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        popularFoodAdapter = PopularFoodAdapter(this)
-        categoryAdapter = CategoryAdapter(this)
-
         setupRecyclerView()
 
-        homeViewModel.getRandomFood()
-        homeViewModel.getPopularFoods()
         homeViewModel.getCategories()
 
         observeRandomFood()
@@ -59,10 +56,18 @@ class HomeFragment : Fragment(), PopularFoodAdapter.PopularFoodListener,
         observeCategories()
 
         onRandomFoodClick()
+        onSearchIconClick()
     }
 
+    private fun onSearchIconClick() {
+        binding.imageSearch.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
+    }
 
     private fun setupRecyclerView() {
+        popularFoodAdapter = PopularFoodAdapter(this)
+        categoryAdapter = CategoryAdapter(this)
         with(binding) {
             popularFoodsRecView.apply {
                 layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
@@ -101,6 +106,7 @@ class HomeFragment : Fragment(), PopularFoodAdapter.PopularFoodListener,
             categoryAdapter.setCategory(categories as ArrayList<Category>)
         }
     }
+
 
     private fun onRandomFoodClick() {
         binding.randomFoodImage.setOnClickListener {

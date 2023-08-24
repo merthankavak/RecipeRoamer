@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/_12sdp"
+    android:layout_marginEnd="@dimen/_12sdp"
     tools:context=".presentation.favorites.FavouritesFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/favoritesToolBar"
+        style="@style/ToolbarStyle"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
         app:title="@string/favorites"
-        app:titleTextColor="@color/orange"
-        style="@style/ToolbarStyle"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:titleTextColor="@color/orange" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favFoodsRecView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/_4sdp"
-        android:layout_marginEnd="@dimen/_4sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

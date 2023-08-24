@@ -7,14 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 import com.mkavaktech.reciperoamer.data.entities.FoodByCategory
-import com.mkavaktech.reciperoamer.databinding.CategoryItemBinding
+import com.mkavaktech.reciperoamer.databinding.FoodByCategoryItemBinding
 
 
 class CategoryFoodAdapter(private val listener: CategoryFoodListener) :
     RecyclerView.Adapter<CategoryFoodAdapter.CategoryFoodViewHolder>() {
 
     private val foodList = ArrayList<FoodByCategory>()
-
 
     interface CategoryFoodListener {
         fun onFoodClick(foodByCategory: FoodByCategory)
@@ -28,8 +27,8 @@ class CategoryFoodAdapter(private val listener: CategoryFoodListener) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryFoodViewHolder {
-        val binding: CategoryItemBinding =
-            CategoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding: FoodByCategoryItemBinding =
+            FoodByCategoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CategoryFoodViewHolder(binding)
     }
 
@@ -40,7 +39,7 @@ class CategoryFoodAdapter(private val listener: CategoryFoodListener) :
         holder.bind(item)
     }
 
-    inner class CategoryFoodViewHolder(private val binding: CategoryItemBinding) :
+    inner class CategoryFoodViewHolder(private val binding: FoodByCategoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -54,8 +53,8 @@ class CategoryFoodAdapter(private val listener: CategoryFoodListener) :
         }
 
         fun bind(item: FoodByCategory) {
-            binding.categoryItemTxt.text = item.strMeal
-            Glide.with(binding.root).load(item.strMealThumb).into(binding.categoryItemImage)
+            binding.foodByCategoryTxt.text = item.strMeal
+            Glide.with(binding.root).load(item.strMealThumb).into(binding.foodByCategoryImage)
         }
     }
 

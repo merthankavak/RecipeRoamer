@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mkavaktech.reciperoamer.data.entities.Category
-import com.mkavaktech.reciperoamer.databinding.FoodCategoriesBinding
+import com.mkavaktech.reciperoamer.databinding.CategoryItemBinding
 
 
 class CategoryAdapter(private val listener: CategoryListener) :
@@ -27,8 +27,8 @@ class CategoryAdapter(private val listener: CategoryListener) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        val binding: FoodCategoriesBinding =
-            FoodCategoriesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding: CategoryItemBinding =
+            CategoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CategoryViewHolder(binding)
     }
 
@@ -39,7 +39,7 @@ class CategoryAdapter(private val listener: CategoryListener) :
         holder.bind(item)
     }
 
-    inner class CategoryViewHolder(private val binding: FoodCategoriesBinding) :
+    inner class CategoryViewHolder(private val binding: CategoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -53,8 +53,8 @@ class CategoryAdapter(private val listener: CategoryListener) :
         }
 
         fun bind(item: Category) {
-            binding.foodCategoryTxt.text = item.strCategory
-            Glide.with(binding.root).load(item.strCategoryThumb).into(binding.foodCategoryImage)
+            binding.categoryTxt.text = item.strCategory
+            Glide.with(binding.root).load(item.strCategoryThumb).into(binding.categoryImage)
         }
     }
 

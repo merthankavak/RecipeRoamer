@@ -29,9 +29,13 @@ class FoodRepository @Inject constructor(
         return remoteDataSource.getCategories()
     }
 
+    suspend fun searchFoods(searchName: String): Resource<List<Meal>> {
+        return remoteDataSource.searchFoods(searchName)
+    }
+
     suspend fun addToFavoriteFood(meal: Meal) = localDataSource.insertMeal(meal)
 
-    suspend fun getFavoriteFood(mealId: String) : Meal = localDataSource.getMeal(mealId)
+    suspend fun getFavoriteFood(mealId: String): Meal = localDataSource.getMeal(mealId)
 
 
     suspend fun removeFavoriteFood(meal: Meal) = localDataSource.deleteMeal(meal)

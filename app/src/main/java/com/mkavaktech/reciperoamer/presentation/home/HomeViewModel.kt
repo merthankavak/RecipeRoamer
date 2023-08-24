@@ -28,7 +28,12 @@ class HomeViewModel @Inject constructor(private val foodRepository: FoodReposito
         MutableLiveData<List<Category>>()
     val categoriesLiveData: LiveData<List<Category>> = _categoriesLiveData
 
-    fun getRandomFood() {
+    init {
+        getRandomFood()
+        getPopularFoods()
+    }
+
+    private fun getRandomFood() {
         viewModelScope.launch {
             when (val response = foodRepository.getRandomFood()) {
                 is Resource.Success -> {
@@ -63,7 +68,7 @@ class HomeViewModel @Inject constructor(private val foodRepository: FoodReposito
         return categories[randomIndex]
     }
 
-    fun getPopularFoods() {
+    private fun getPopularFoods() {
         viewModelScope.launch {
             when (val response = foodRepository.getFoodsByCategory(getRandomCategory())) {
                 is Resource.Success -> {
@@ -95,5 +100,7 @@ class HomeViewModel @Inject constructor(private val foodRepository: FoodReposito
             }
         }
     }
+
+
 }
 

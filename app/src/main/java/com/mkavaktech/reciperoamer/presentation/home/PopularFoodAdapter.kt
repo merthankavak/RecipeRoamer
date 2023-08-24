@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mkavaktech.reciperoamer.data.entities.FoodByCategory
-import com.mkavaktech.reciperoamer.databinding.PopularFoodsBinding
+import com.mkavaktech.reciperoamer.databinding.PopularFoodItemBinding
 
 class PopularFoodAdapter(private val listener: PopularFoodListener) :
     RecyclerView.Adapter<PopularFoodAdapter.PopularFoodViewHolder>() {
@@ -26,8 +26,8 @@ class PopularFoodAdapter(private val listener: PopularFoodListener) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularFoodViewHolder {
-        val binding: PopularFoodsBinding =
-            PopularFoodsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding: PopularFoodItemBinding =
+            PopularFoodItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PopularFoodViewHolder(binding)
     }
 
@@ -38,7 +38,7 @@ class PopularFoodAdapter(private val listener: PopularFoodListener) :
         holder.bind(item)
     }
 
-    inner class PopularFoodViewHolder(private val binding: PopularFoodsBinding) :
+    inner class PopularFoodViewHolder(private val binding: PopularFoodItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
