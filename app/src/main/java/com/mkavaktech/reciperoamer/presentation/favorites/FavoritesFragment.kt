@@ -47,7 +47,6 @@ class FavouritesFragment : Fragment(), FavoriteFoodsAdapter.FavoriteFoodsListene
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        favoriteFoodsAdapter = FavoriteFoodsAdapter(this)
         setupRecyclerView()
         observeFavFoodList()
 
@@ -60,6 +59,7 @@ class FavouritesFragment : Fragment(), FavoriteFoodsAdapter.FavoriteFoodsListene
     }
 
     private fun setupRecyclerView() {
+        favoriteFoodsAdapter = FavoriteFoodsAdapter(this)
         binding.favFoodsRecView.apply {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
             adapter = favoriteFoodsAdapter

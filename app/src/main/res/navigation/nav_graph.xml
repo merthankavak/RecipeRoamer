@@ -10,6 +10,9 @@
         android:name="com.mkavaktech.reciperoamer.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
 
     <fragment
@@ -22,4 +25,9 @@
         android:name="com.mkavaktech.reciperoamer.presentation.info.InfoFragment"
         android:label="fragment_info"
         tools:layout="@layout/fragment_info" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.mkavaktech.reciperoamer.presentation.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
 </navigation>

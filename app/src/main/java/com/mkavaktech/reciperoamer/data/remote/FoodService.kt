@@ -9,17 +9,17 @@ import retrofit2.http.Query
 
 interface FoodService {
     @GET("random.php")
-    suspend fun getRandomFood() : Response<MealList>
+    suspend fun getRandomFood(): Response<MealList>
 
-    @GET("lookup.php?")
-    suspend fun  getFoodDetails(@Query(value = "i") foodId:String) : Response<MealList>
+    @GET("lookup.php")
+    suspend fun getFoodDetails(@Query(value = "i") foodId: String): Response<MealList>
 
-    @GET("filter.php?")
-    suspend fun  getFoodsByCategory(@Query(value = "c") categoryName:String) : Response<FoodByCategoryList>
+    @GET("filter.php")
+    suspend fun getFoodsByCategory(@Query(value = "c") categoryName: String): Response<FoodByCategoryList>
 
     @GET("categories.php")
-    suspend fun getCategories() : Response<CategoryList>
+    suspend fun getCategories(): Response<CategoryList>
 
-
-
+    @GET("search.php")
+    suspend fun searchFoods(@Query(value = "s") searchName: String): Response<MealList>
 }

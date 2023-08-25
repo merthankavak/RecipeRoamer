@@ -35,7 +35,7 @@ class FoodDetailsViewModel @Inject constructor(private val foodRepository: FoodR
                 }
 
                 is Resource.Error -> {
-                    Log.d("HomeViewModel", response.message!!)
+                    Log.d("FoodDeViewModel", response.message!!)
                 }
             }
         }
