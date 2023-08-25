@@ -10,7 +10,7 @@
     app:mode="normal">
 
     <FrameLayout
-        android:layout_width="@dimen/_60sdp"
+        android:layout_width="@dimen/_50sdp"
         android:layout_height="match_parent"
         android:background="@color/red">
 

@@ -8,6 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="blackOlive">#3C3C3E</color>
     <color name="lightGray">#F5F5F5</color>
+    <color name="darkerGray">#aaaaaa</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
+    <color name="orangeLight">#ffbb33</color>
+    <color name="cerise">#DE3163</color>
+    <color name="byzantium">#702963</color>
+    <color name="gold">#FFD700</color>
+    <color name="brightBlue">#0096FF</color>
 </resources>

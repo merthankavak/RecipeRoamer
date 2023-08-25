@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/orangeLight"
+    tools:context=".presentation.onboarding.OnboardingActivity">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/onBoardingViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:background="@drawable/view_pager_bg"
+        app:layout_constraintBottom_toTopOf="@id/outerOfNextView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/skipTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:text="@string/skip"
+        android:textSize="@dimen/_12ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/outerOfNextView"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/ic_outer_bg"
+        app:layout_constraintBottom_toBottomOf="@id/nextImage"
+        app:layout_constraintEnd_toEndOf="@id/nextImage"
+        app:layout_constraintStart_toStartOf="@id/nextImage"
+        app:layout_constraintTop_toTopOf="@id/nextImage" />
+
+    <View
+        android:id="@+id/centerOfNextView"
+        android:layout_width="@dimen/_1sdp"
+        android:layout_height="@dimen/_1sdp"
+        app:layout_constraintBottom_toBottomOf="@id/nextImage"
+        app:layout_constraintEnd_toEndOf="@id/nextImage"
+        app:layout_constraintStart_toStartOf="@id/nextImage"
+        app:layout_constraintTop_toTopOf="@id/nextImage" />
+
+
+    <ImageView
+        android:id="@+id/nextImage"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:background="@drawable/ic_bg"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/space"
+        app:layout_constraintTop_toBottomOf="@id/onBoardingViewPager"
+        app:tint="@color/white" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/indicatorLayout"
+        app:layout_constraintEnd_toStartOf="@id/nextImage"
+        app:layout_constraintStart_toEndOf="@id/indicatorLayout"
+        app:layout_constraintTop_toTopOf="@id/indicatorLayout" />
+
+    <LinearLayout
+        android:id="@+id/indicatorLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/space"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/onBoardingViewPager" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
