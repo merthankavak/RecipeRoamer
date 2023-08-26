@@ -21,11 +21,9 @@ import javax.inject.Singleton
 class AppModule {
     @Singleton
     @Provides
-    fun provideRetrofit() : Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+    fun provideRetrofit(): Retrofit {
+        return Retrofit.Builder().baseUrl(Constants.Network.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
     @Singleton
@@ -34,7 +32,7 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideFoodService(retrofit: Retrofit) : FoodService{
+    fun provideFoodService(retrofit: Retrofit): FoodService {
         return retrofit.create(FoodService::class.java)
     }
 
@@ -47,7 +45,9 @@ class AppModule {
     fun provideFoodLocalDataSource(database: AppDatabase) = database.mealDao()
 
     @Provides
-    fun provideFoodRepository(foodRemoteDataSource: FoodRemoteDataSource, foodLocalDataSource: MealDao): FoodRepository {
+    fun provideFoodRepository(
+        foodRemoteDataSource: FoodRemoteDataSource, foodLocalDataSource: MealDao
+    ): FoodRepository {
         return FoodRepository(foodRemoteDataSource, foodLocalDataSource)
     }
 }

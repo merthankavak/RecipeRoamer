@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.mkavaktech.reciperoamer.data.entities.Meal
+import com.mkavaktech.reciperoamer.utils.Constants
 
 @Database(entities = [Meal::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
@@ -12,14 +13,17 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun mealDao(): MealDao
 
     companion object {
-        @Volatile private var instance: AppDatabase? = null
+        @Volatile
+        private var instance: AppDatabase? = null
 
-        fun getDatabase(context: Context): AppDatabase =
-            instance ?: synchronized(this) { instance ?: buildDatabase(context).also { instance = it } }
+        fun getDatabase(context: Context): AppDatabase = instance ?: synchronized(this) {
+            instance ?: buildDatabase(context).also {
+                instance = it
+            }
+        }
 
         private fun buildDatabase(appContext: Context) =
-            Room.databaseBuilder(appContext, AppDatabase::class.java, "meals")
-                .fallbackToDestructiveMigration()
-                .build()
+            Room.databaseBuilder(appContext, AppDatabase::class.java, Constants.Database.TABLE_NAME)
+                .fallbackToDestructiveMigration().build()
     }
 }

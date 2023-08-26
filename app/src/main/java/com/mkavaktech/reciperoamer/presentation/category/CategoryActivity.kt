@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.mkavaktech.reciperoamer.data.entities.FoodByCategory
 import com.mkavaktech.reciperoamer.databinding.ActivityCategoryBinding
 import com.mkavaktech.reciperoamer.presentation.food_details.FoodDetailsActivity
-import com.mkavaktech.reciperoamer.presentation.home.HomeFragment
+import com.mkavaktech.reciperoamer.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,7 +29,7 @@ class CategoryActivity : AppCompatActivity(), CategoryFoodAdapter.CategoryFoodLi
         setupToolBarSettings()
         categoryViewModel.getFoodByCategory(categoryName)
         setupRecyclerView()
-        observerFoods()
+        observeFoods()
     }
 
     private fun setupToolBarSettings() {
@@ -59,10 +59,10 @@ class CategoryActivity : AppCompatActivity(), CategoryFoodAdapter.CategoryFoodLi
 
     private fun getCategoryInfoFromIntent() {
         val intent = intent
-        categoryName = intent.getStringExtra(HomeFragment.categoryName)!!
+        categoryName = intent.getStringExtra(Constants.Details.CATEGORY_NAME)!!
     }
 
-    private fun observerFoods() {
+    private fun observeFoods() {
         categoryViewModel.foodsLiveData.observe(this) { foodList ->
             categoryFoodAdapter.setFoods(foodList as ArrayList<FoodByCategory>)
         }
@@ -71,9 +71,9 @@ class CategoryActivity : AppCompatActivity(), CategoryFoodAdapter.CategoryFoodLi
 
     override fun onFoodClick(foodByCategory: FoodByCategory) {
         val intent = Intent(this, FoodDetailsActivity::class.java)
-        intent.putExtra(HomeFragment.foodId, foodByCategory.idMeal)
-        intent.putExtra(HomeFragment.foodName, foodByCategory.strMeal)
-        intent.putExtra(HomeFragment.foodThumb, foodByCategory.strMealThumb)
+        intent.putExtra(Constants.Details.FOOD_ID, foodByCategory.idMeal)
+        intent.putExtra(Constants.Details.FOOD_NAME, foodByCategory.strMeal)
+        intent.putExtra(Constants.Details.FOOD_THUMB, foodByCategory.strMealThumb)
         startActivity(intent)
     }
 }

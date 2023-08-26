@@ -10,8 +10,7 @@ import javax.inject.Inject
 
 
 class FoodRepository @Inject constructor(
-    private val remoteDataSource: FoodRemoteDataSource,
-    private val localDataSource: MealDao
+    private val remoteDataSource: FoodRemoteDataSource, private val localDataSource: MealDao
 ) {
     suspend fun getRandomFood(): Resource<Meal> {
         return remoteDataSource.getRandomFood()

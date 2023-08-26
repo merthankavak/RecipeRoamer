@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.mkavaktech.reciperoamer.data.entities.FoodByCategory
 import com.mkavaktech.reciperoamer.databinding.FoodByCategoryItemBinding
 
-
 class CategoryFoodAdapter(private val listener: CategoryFoodListener) :
     RecyclerView.Adapter<CategoryFoodAdapter.CategoryFoodViewHolder>() {
 

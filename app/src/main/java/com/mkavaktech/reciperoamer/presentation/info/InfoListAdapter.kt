@@ -11,10 +11,9 @@ import com.mkavaktech.reciperoamer.databinding.InfoItemBinding
 
 class InfoListAdapter(private val listener: InfoListListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     companion object {
-        private const val VIEW_TYPE_HEADER = 0
-        private const val VIEW_TYPE_ITEM = 1
+        const val VIEW_TYPE_HEADER = 0
+        const val VIEW_TYPE_ITEM = 1
     }
 
     private val infoList = ArrayList<InfoItem>()

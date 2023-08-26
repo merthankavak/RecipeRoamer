@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.mkavaktech.reciperoamer.R
 import com.mkavaktech.reciperoamer.databinding.ActivityMainBinding
 import com.mkavaktech.reciperoamer.presentation.onboarding.OnboardingActivity
+import com.mkavaktech.reciperoamer.utils.Constants
 import com.mkavaktech.reciperoamer.utils.Helper
 import dagger.hilt.android.AndroidEntryPoint
 import io.ak1.BubbleTabBar
@@ -22,17 +23,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var sharedPreferences: SharedPreferences
 
-    companion object {
-        const val PREF_KEY_ONBOARDING = "onboarding"
-        const val PREF_KEY_ONBOARDING_SHOWN = "onboarding_shown"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        sharedPreferences = getSharedPreferences(PREF_KEY_ONBOARDING, Context.MODE_PRIVATE)
+        sharedPreferences =
+            getSharedPreferences(Constants.Onboarding.PREF_KEY_ONBOARDING, Context.MODE_PRIVATE)
         decideAndNavigate()
 
         val navHostFragment =
@@ -49,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isOnboardingShown(): Boolean {
-        return sharedPreferences.getBoolean(PREF_KEY_ONBOARDING_SHOWN, false)
+        return sharedPreferences.getBoolean(Constants.Onboarding.PREF_KEY_ONBOARDING_SHOWN, false)
     }
 
     private fun setupBottomNavBar() {

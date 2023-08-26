@@ -13,7 +13,6 @@ class PopularFoodAdapter(private val listener: PopularFoodListener) :
 
     private val foodList = ArrayList<FoodByCategory>()
 
-
     interface PopularFoodListener {
         fun onPopularFoodClick(popularFood: FoodByCategory)
     }
@@ -56,5 +55,4 @@ class PopularFoodAdapter(private val listener: PopularFoodListener) :
             Glide.with(binding.root).load(item.strMealThumb).into(binding.popularFoodImage)
         }
     }
-
 }

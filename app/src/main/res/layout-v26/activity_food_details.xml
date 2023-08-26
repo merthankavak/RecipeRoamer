@@ -153,6 +153,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
+                        android:justificationMode="inter_word"
                         android:text="@string/instructions"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12ssp"

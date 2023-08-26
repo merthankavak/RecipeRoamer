@@ -16,10 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
+import com.mkavaktech.reciperoamer.R
 
 import com.mkavaktech.reciperoamer.data.entities.InfoItem
 import com.mkavaktech.reciperoamer.databinding.FragmentInfoBinding
 import com.mkavaktech.reciperoamer.presentation.onboarding.OnboardingActivity
+import com.mkavaktech.reciperoamer.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -49,7 +51,20 @@ class InfoFragment : Fragment(), InfoListAdapter.InfoListListener {
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = infoListAdapter
         }
-        val itemList = ArrayList<InfoItem>(InfoItem.itemList)
+
+        val itemList = arrayListOf(
+            InfoItem(title = getString(R.string.app), isHeader = true),
+            InfoItem(R.drawable.ic_tour, getString(R.string.application_tour), R.color.cerise),
+            InfoItem(R.drawable.ic_lock, getString(R.string.privacy_policy), R.color.byzantium),
+            InfoItem(R.drawable.ic_rate, getString(R.string.rate_the_app), R.color.gold),
+            InfoItem(title = getString(R.string.general), isHeader = true),
+            InfoItem(
+                R.drawable.ic_connect, getString(R.string.connect_with_me), R.color.brightBlue
+            ),
+            InfoItem(R.drawable.ic_feedback, getString(R.string.send_feedback), R.color.black),
+            InfoItem(title = getString(R.string.my_other_app), isHeader = true),
+            InfoItem(R.drawable.ic_app, getString(R.string.daily_horoscopes), R.color.red),
+        )
         infoListAdapter.setInfoItem(itemList)
     }
 
@@ -67,9 +82,9 @@ class InfoFragment : Fragment(), InfoListAdapter.InfoListListener {
     }
 
     private fun sendFeedbackEmail() {
-        val subject = "Recipe Roamer Feedback"
-        val to = "merthan.kavak@gmail.com"
-        val deviceInfo = "Device Model: ${Build.MODEL}\nApp Info: ${getAppInfo()}"
+        val subject = Constants.InfoItems.EMAIL_SUBJECT
+        val to = Constants.InfoItems.EMAIL_ADDRESS
+        val deviceInfo = getString(R.string.device_model_app_info, Build.MODEL, getAppInfo())
 
         val emailIntent = Intent(Intent.ACTION_SENDTO)
         emailIntent.data = Uri.parse("mailto:")
@@ -78,7 +93,7 @@ class InfoFragment : Fragment(), InfoListAdapter.InfoListListener {
         emailIntent.putExtra(Intent.EXTRA_TEXT, deviceInfo)
 
         try {
-            startActivity(Intent.createChooser(emailIntent, "Send Feedback"))
+            startActivity(Intent.createChooser(emailIntent, getString(R.string.send_feedback)))
         } catch (ex: Exception) {
             Log.d("Send Feedback", "sendFeedbackEmail: ${ex.message}")
         }
@@ -90,7 +105,7 @@ class InfoFragment : Fragment(), InfoListAdapter.InfoListListener {
     }
 
     private fun openGooglePlayApp() {
-        val packageName = "com.mkavaktech.dailyhoroscopeapp"
+        val packageName = Constants.InfoItems.DAILY_HOROSCOPES_PACKAGE_NAME
         val playStoreIntent =
             Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName"))
         try {
@@ -107,7 +122,7 @@ class InfoFragment : Fragment(), InfoListAdapter.InfoListListener {
                 val reviewInfo = task.result
                 reviewManager.launchReviewFlow(requireActivity(), reviewInfo)
             } else {
-                Log.d("reviewError", "Failed to start in-app review")
+                Log.d("Review Error", "Failed to start in-app review")
             }
         }
     }
@@ -120,9 +135,9 @@ class InfoFragment : Fragment(), InfoListAdapter.InfoListListener {
     override fun onInfoItemClick(position: Int) {
         when (position) {
             1 -> navigateOnboarding()
-            2 -> openWebLink("https://docs.google.com/document/d/1WhKS0CF5l4xcbcNy49nW-hrrhQ4GdFd3fNYv0keY9nw")
+            2 -> openWebLink(Constants.InfoItems.PRIVACY_POLICY)
             3 -> showInAppReview()
-            5 -> openWebLink("https://bento.me/merthan")
+            5 -> openWebLink(Constants.InfoItems.CONNECT_WITH_ME)
             6 -> sendFeedbackEmail()
             8 -> openGooglePlayApp()
         }

@@ -16,6 +16,7 @@ import com.mkavaktech.reciperoamer.R
 import com.mkavaktech.reciperoamer.data.entities.OnboardingItem
 import com.mkavaktech.reciperoamer.databinding.ActivityOnboardingBinding
 import com.mkavaktech.reciperoamer.presentation.MainActivity
+import com.mkavaktech.reciperoamer.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -27,19 +28,13 @@ class OnboardingActivity : AppCompatActivity() {
 
     private lateinit var sharedPreferences: SharedPreferences
 
-    companion object {
-        const val PREF_KEY_ONBOARDING = "onboarding"
-        const val PREF_KEY_ONBOARDING_SHOWN = "onboarding_shown"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        sharedPreferences = getSharedPreferences(
-            PREF_KEY_ONBOARDING, Context.MODE_PRIVATE
-        )
+        sharedPreferences =
+            getSharedPreferences(Constants.Onboarding.PREF_KEY_ONBOARDING, Context.MODE_PRIVATE)
 
         setupRecyclerView()
         setupViewPager()
@@ -56,7 +51,23 @@ class OnboardingActivity : AppCompatActivity() {
             adapter = onboardingItemsListAdapter
         }
 
-        val itemList = ArrayList<OnboardingItem>(OnboardingItem.itemList)
+        val itemList = arrayListOf(
+            OnboardingItem(
+                R.drawable.onboarding_img_1,
+                Constants.APP_NAME,
+                getString(R.string.onboarding_desc_1)
+            ),
+            OnboardingItem(
+                R.drawable.onboarding_img_2,
+                getString(R.string.onboarding_title_2),
+                getString(R.string.onboarding_desc_2)
+            ),
+            OnboardingItem(
+                R.drawable.onboarding_img_3,
+                getString(R.string.onboarding_title_3),
+                getString(R.string.onboarding_desc_3)
+            ),
+        )
         onboardingItemsListAdapter.setItems(itemList)
     }
 
@@ -80,7 +91,7 @@ class OnboardingActivity : AppCompatActivity() {
 
     private fun saveOnboardingStatus(status: Boolean) {
         sharedPreferences.edit {
-            putBoolean(PREF_KEY_ONBOARDING_SHOWN, status)
+            putBoolean(Constants.Onboarding.PREF_KEY_ONBOARDING_SHOWN, status)
         }
     }
 
@@ -146,6 +157,4 @@ class OnboardingActivity : AppCompatActivity() {
             }
         }
     }
-
-
 }

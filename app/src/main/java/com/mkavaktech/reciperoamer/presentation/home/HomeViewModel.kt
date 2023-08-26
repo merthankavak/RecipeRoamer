@@ -101,6 +101,5 @@ class HomeViewModel @Inject constructor(private val foodRepository: FoodReposito
         }
     }
 
-
 }
 

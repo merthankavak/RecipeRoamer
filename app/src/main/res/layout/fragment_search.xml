@@ -25,7 +25,7 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_weight="1"
             android:backgroundTint="@color/lightGray"
-            android:hint="Search Food"
+            android:hint="@string/search_food"
             android:importantForAutofill="no"
             android:inputType="textAutoCorrect"
             android:paddingStart="@dimen/_5sdp"

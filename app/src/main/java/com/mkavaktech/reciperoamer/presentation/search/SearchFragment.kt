@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mkavaktech.reciperoamer.data.entities.Meal
 import com.mkavaktech.reciperoamer.databinding.FragmentSearchBinding
 import com.mkavaktech.reciperoamer.presentation.food_details.FoodDetailsActivity
-import com.mkavaktech.reciperoamer.presentation.home.HomeFragment
+import com.mkavaktech.reciperoamer.utils.Constants
 import com.mkavaktech.reciperoamer.utils.Helper.Companion.debounce
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -76,9 +76,9 @@ class SearchFragment : Fragment(), SearchFoodsAdapter.SearchFoodsListener {
 
     override fun onFoodClick(food: Meal) {
         val intent = Intent(activity, FoodDetailsActivity::class.java)
-        intent.putExtra(HomeFragment.foodId, food.idMeal)
-        intent.putExtra(HomeFragment.foodName, food.strMeal)
-        intent.putExtra(HomeFragment.foodThumb, food.strMealThumb)
+        intent.putExtra(Constants.Details.FOOD_ID, food.idMeal)
+        intent.putExtra(Constants.Details.FOOD_NAME, food.strMeal)
+        intent.putExtra(Constants.Details.FOOD_THUMB, food.strMealThumb)
         startActivity(intent)
     }
 
