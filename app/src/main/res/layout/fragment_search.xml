@@ -39,9 +39,24 @@
             android:contentDescription="@string/search"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_clear"
+            android:visibility="invisible"
             app:tint="@color/blackOlive" />
 
     </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/searchAnimationView"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchLinearLayout"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/not_found_lottie" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchFoodsRecView"

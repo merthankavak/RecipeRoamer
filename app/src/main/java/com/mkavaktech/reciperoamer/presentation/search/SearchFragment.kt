@@ -49,10 +49,21 @@ class SearchFragment : Fragment(), SearchFoodsAdapter.SearchFoodsListener {
         binding.apply {
             searchEditText.addTextChangedListener { editable ->
                 val searchText = editable.toString()
-                debounceSearch(searchText)
+                if (searchText.isNotBlank() && searchText.isNotEmpty()) {
+                    clearIcon.visibility = View.VISIBLE
+                    debounceSearch(searchText)
+                    checkNotFoundAnim()
+                } else {
+                    clearIcon.visibility = View.INVISIBLE
+                    searchFoodsAdapter.clearItems()
+                    checkNotFoundAnim()
+                }
+
             }
             clearIcon.setOnClickListener {
                 searchEditText.text.clear()
+                searchFoodsAdapter.clearItems()
+                checkNotFoundAnim()
             }
         }
     }
@@ -62,6 +73,18 @@ class SearchFragment : Fragment(), SearchFoodsAdapter.SearchFoodsListener {
         binding.searchFoodsRecView.apply {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
             adapter = searchFoodsAdapter
+
+        }
+    }
+
+    private fun checkNotFoundAnim() {
+        val searchAnimationView = binding.searchAnimationView
+        if (searchFoodsAdapter.itemCount == 0) {
+            searchAnimationView.visibility = View.VISIBLE
+            searchAnimationView.playAnimation()
+        } else {
+            searchAnimationView.cancelAnimation()
+            searchAnimationView.visibility = View.INVISIBLE
         }
     }
 
@@ -71,6 +94,7 @@ class SearchFragment : Fragment(), SearchFoodsAdapter.SearchFoodsListener {
             viewLifecycleOwner
         ) { foodList ->
             searchFoodsAdapter.setFood(foodList as ArrayList<Meal>)
+            checkNotFoundAnim()
         }
     }
 

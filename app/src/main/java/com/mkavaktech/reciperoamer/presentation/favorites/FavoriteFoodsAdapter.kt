@@ -18,6 +18,7 @@ class FavoriteFoodsAdapter(private val listener: FavoriteFoodsListener) :
     interface FavoriteFoodsListener {
         fun onFavoriteFoodsClick(meal: Meal)
         fun onFavIconClick(adapterPosition: Int)
+
     }
 
 

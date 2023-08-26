@@ -23,6 +23,11 @@ class SearchFoodsAdapter(private val listener: SearchFoodsListener) :
         this.foodList.addAll(foodList)
         notifyDataSetChanged()
     }
+    @SuppressLint("NotifyDataSetChanged")
+    fun clearItems() {
+        this.foodList.clear()
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchFoodsViewHolder {
         val binding: SearchFoodItemBinding =

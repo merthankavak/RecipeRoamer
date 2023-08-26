@@ -52,14 +52,27 @@ class FavouritesFragment : Fragment(), FavoriteFoodsAdapter.FavoriteFoodsListene
     private fun observeFavFoodList() {
         favoritesViewModel.favoritesFoodLiveData.observe(viewLifecycleOwner) { favFoodList ->
             favoriteFoodsAdapter.setFavFood(favFoodList as ArrayList<Meal>)
+            checkNotFoundAnim()
         }
     }
+
 
     private fun setupRecyclerView() {
         favoriteFoodsAdapter = FavoriteFoodsAdapter(this)
         binding.favFoodsRecView.apply {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
             adapter = favoriteFoodsAdapter
+        }
+    }
+
+    private fun checkNotFoundAnim() {
+        val favAnimationView = binding.favAnimationView
+        if (favoriteFoodsAdapter.itemCount == 0) {
+            favAnimationView.visibility = View.VISIBLE
+            favAnimationView.playAnimation()
+        } else {
+            favAnimationView.cancelAnimation()
+            favAnimationView.visibility = View.INVISIBLE
         }
     }
 
@@ -83,7 +96,10 @@ class FavouritesFragment : Fragment(), FavoriteFoodsAdapter.FavoriteFoodsListene
         ) {
             favoriteFoodsAdapter.addItem(adapterPosition, deletedFood)
             favoritesViewModel.addToFavoriteFood(deletedFood)
+            checkNotFoundAnim()
         }.setBackgroundTint(Color.RED).setActionTextColor(Color.BLACK).show()
+
         favoritesViewModel.removeFavoriteFood(deletedFood)
+        checkNotFoundAnim()
     }
 }
