@@ -4,6 +4,12 @@ Recipe Roamer app is a mobile application developed using Android Kotlin, It use
 the [TheMealDB API](https://www.themealdb.com/api.php) for recipes. Within the app, you can explore
 different recipes, watch how to cook them, and even save your favorites.
 
+<p align="left">
+<a href="https://play.google.com/store/apps/details?id=com.mkavaktech.reciperoamer" target="_blank">
+    <img alt="Get it on Google Play"
+        height="80"
+        src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
+
 ## Tech and Libraries
 
 - [Kotlin coroutines](https://developer.android.com/kotlin/coroutines)
