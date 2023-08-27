@@ -1,5 +1,6 @@
 package com.mkavaktech.reciperoamer.presentation.favorites
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
@@ -9,20 +10,19 @@ import com.bumptech.glide.Glide
 import com.mkavaktech.reciperoamer.data.entities.Meal
 import com.mkavaktech.reciperoamer.databinding.FavFoodItemBinding
 
-
-
-class FavoriteFoodsAdapter(private val listener: FavoriteFoodsListener )
-    : RecyclerView.Adapter<FavoriteFoodsAdapter.FavoriteFoodsViewHolder>() {
+class FavoriteFoodsAdapter(private val listener: FavoriteFoodsListener) :
+    RecyclerView.Adapter<FavoriteFoodsAdapter.FavoriteFoodsViewHolder>() {
 
     private val favFoodsList = ArrayList<Meal>()
-
 
     interface FavoriteFoodsListener {
         fun onFavoriteFoodsClick(meal: Meal)
         fun onFavIconClick(adapterPosition: Int)
+
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setFavFood(favFoodsList: ArrayList<Meal>) {
         this.favFoodsList.clear()
         this.favFoodsList.addAll(favFoodsList)
@@ -41,7 +41,7 @@ class FavoriteFoodsAdapter(private val listener: FavoriteFoodsListener )
         }
     }
 
-    fun foodList() :  ArrayList<Meal> = favFoodsList
+    fun foodList(): ArrayList<Meal> = favFoodsList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteFoodsViewHolder {
         val binding: FavFoodItemBinding =
@@ -79,6 +79,5 @@ class FavoriteFoodsAdapter(private val listener: FavoriteFoodsListener )
             Glide.with(binding.root).load(item.strMealThumb).into(binding.favFoodImage)
         }
     }
-
 
 }

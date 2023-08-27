@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mkavaktech.reciperoamer.data.entities.Meal
 import com.mkavaktech.reciperoamer.databinding.FragmentSearchBinding
 import com.mkavaktech.reciperoamer.presentation.food_details.FoodDetailsActivity
-import com.mkavaktech.reciperoamer.presentation.home.HomeFragment
+import com.mkavaktech.reciperoamer.utils.Constants
 import com.mkavaktech.reciperoamer.utils.Helper.Companion.debounce
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,10 +49,21 @@ class SearchFragment : Fragment(), SearchFoodsAdapter.SearchFoodsListener {
         binding.apply {
             searchEditText.addTextChangedListener { editable ->
                 val searchText = editable.toString()
-                debounceSearch(searchText)
+                if (searchText.isNotBlank() && searchText.isNotEmpty()) {
+                    clearIcon.visibility = View.VISIBLE
+                    debounceSearch(searchText)
+                    checkNotFoundAnim()
+                } else {
+                    clearIcon.visibility = View.INVISIBLE
+                    searchFoodsAdapter.clearItems()
+                    checkNotFoundAnim()
+                }
+
             }
             clearIcon.setOnClickListener {
                 searchEditText.text.clear()
+                searchFoodsAdapter.clearItems()
+                checkNotFoundAnim()
             }
         }
     }
@@ -62,6 +73,18 @@ class SearchFragment : Fragment(), SearchFoodsAdapter.SearchFoodsListener {
         binding.searchFoodsRecView.apply {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
             adapter = searchFoodsAdapter
+
+        }
+    }
+
+    private fun checkNotFoundAnim() {
+        val searchAnimationView = binding.searchAnimationView
+        if (searchFoodsAdapter.itemCount == 0) {
+            searchAnimationView.visibility = View.VISIBLE
+            searchAnimationView.playAnimation()
+        } else {
+            searchAnimationView.cancelAnimation()
+            searchAnimationView.visibility = View.INVISIBLE
         }
     }
 
@@ -71,14 +94,15 @@ class SearchFragment : Fragment(), SearchFoodsAdapter.SearchFoodsListener {
             viewLifecycleOwner
         ) { foodList ->
             searchFoodsAdapter.setFood(foodList as ArrayList<Meal>)
+            checkNotFoundAnim()
         }
     }
 
     override fun onFoodClick(food: Meal) {
         val intent = Intent(activity, FoodDetailsActivity::class.java)
-        intent.putExtra(HomeFragment.foodId, food.idMeal)
-        intent.putExtra(HomeFragment.foodName, food.strMeal)
-        intent.putExtra(HomeFragment.foodThumb, food.strMealThumb)
+        intent.putExtra(Constants.Details.FOOD_ID, food.idMeal)
+        intent.putExtra(Constants.Details.FOOD_NAME, food.strMeal)
+        intent.putExtra(Constants.Details.FOOD_THUMB, food.strMealThumb)
         startActivity(intent)
     }
 

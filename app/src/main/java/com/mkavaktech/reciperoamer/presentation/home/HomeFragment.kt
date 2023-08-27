@@ -2,7 +2,6 @@ package com.mkavaktech.reciperoamer.presentation.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,18 +24,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment(), PopularFoodAdapter.PopularFoodListener,
     CategoryAdapter.CategoryListener {
+
     private lateinit var binding: FragmentHomeBinding
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var randomFood: Meal
     private lateinit var popularFoodAdapter: PopularFoodAdapter
     private lateinit var categoryAdapter: CategoryAdapter
-
-    companion object {
-        const val foodId: String = Constants.PACKAGE_NAME + ".foodId"
-        const val foodName: String = Constants.PACKAGE_NAME + ".foodName"
-        const val foodThumb: String = Constants.PACKAGE_NAME + ".foodThumb"
-        const val categoryName: String = Constants.PACKAGE_NAME + ".categoryName"
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -111,25 +104,24 @@ class HomeFragment : Fragment(), PopularFoodAdapter.PopularFoodListener,
     private fun onRandomFoodClick() {
         binding.randomFoodImage.setOnClickListener {
             val intent = Intent(activity, FoodDetailsActivity::class.java)
-            intent.putExtra(foodId, randomFood.idMeal)
-            intent.putExtra(foodName, randomFood.strMeal)
-            intent.putExtra(foodThumb, randomFood.strMealThumb)
+            intent.putExtra(Constants.Details.FOOD_ID, randomFood.idMeal)
+            intent.putExtra(Constants.Details.FOOD_NAME, randomFood.strMeal)
+            intent.putExtra(Constants.Details.FOOD_THUMB, randomFood.strMealThumb)
             startActivity(intent)
         }
     }
 
     override fun onPopularFoodClick(popularFood: FoodByCategory) {
         val intent = Intent(activity, FoodDetailsActivity::class.java)
-        intent.putExtra(foodId, popularFood.idMeal)
-        intent.putExtra(foodName, popularFood.strMeal)
-        intent.putExtra(foodThumb, popularFood.strMealThumb)
+        intent.putExtra(Constants.Details.FOOD_ID, popularFood.idMeal)
+        intent.putExtra(Constants.Details.FOOD_NAME, popularFood.strMeal)
+        intent.putExtra(Constants.Details.FOOD_THUMB, popularFood.strMealThumb)
         startActivity(intent)
     }
 
     override fun onCategoryClick(category: Category) {
-        Log.d("Category Click", "onCategoryClick: Clicked")
         val intent = Intent(activity, CategoryActivity::class.java)
-        intent.putExtra(categoryName, category.strCategory)
+        intent.putExtra(Constants.Details.CATEGORY_NAME, category.strCategory)
         startActivity(intent)
     }
 

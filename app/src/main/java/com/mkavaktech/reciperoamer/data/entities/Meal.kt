@@ -3,15 +3,15 @@ package com.mkavaktech.reciperoamer.data.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.mkavaktech.reciperoamer.utils.Constants
 
-@Entity(tableName = "meals")
+@Entity(tableName = Constants.Database.TABLE_NAME)
 data class Meal(
     @PrimaryKey val idMeal: String,
-    @ColumnInfo(name = "str_area") val strArea: String?,
-    @ColumnInfo(name = "str_category") val strCategory: String?,
-    @ColumnInfo(name = "str_instructions") val strInstructions: String?,
-    @ColumnInfo(name = "str_meal") val strMeal: String?,
-    @ColumnInfo(name = "str_meal_thumb") val strMealThumb: String?,
-    @ColumnInfo(name = "str_youtube") val strYoutube: String?
-
+    @ColumnInfo(name = Constants.Database.STR_AREA) val strArea: String?,
+    @ColumnInfo(name = Constants.Database.STR_CATEGORY) val strCategory: String?,
+    @ColumnInfo(name = Constants.Database.STR_INSTRUCTIONS) val strInstructions: String?,
+    @ColumnInfo(name = Constants.Database.STR_MEAL) val strMeal: String?,
+    @ColumnInfo(name = Constants.Database.STR_MEAL_THUMB) val strMealThumb: String?,
+    @ColumnInfo(name = Constants.Database.STR_YOUTUBE) val strYoutube: String?
 )

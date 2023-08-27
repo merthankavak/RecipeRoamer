@@ -17,6 +17,19 @@
         app:title="@string/favorites"
         app:titleTextColor="@color/orange" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/favAnimationView"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/favoritesToolBar"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/not_found_lottie" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favFoodsRecView"
         android:layout_width="match_parent"

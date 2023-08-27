@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".presentation.category.CategoryActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/categoryToolBar"
+        style="@style/ToolbarStyle"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
         app:title="@string/category"
-        style="@style/ToolbarStyle"
-        app:titleTextColor="@color/orange"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:titleTextColor="@color/orange" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecView"

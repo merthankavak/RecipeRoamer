@@ -16,7 +16,7 @@ interface MealDao {
     suspend fun getMeal(mealId: String): Meal
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMeal(meal: Meal) : Long
+    suspend fun insertMeal(meal: Meal): Long
 
     @Delete
     suspend fun deleteMeal(meal: Meal)

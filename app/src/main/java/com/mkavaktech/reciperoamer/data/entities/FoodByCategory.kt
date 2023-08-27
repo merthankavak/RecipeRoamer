@@ -1,7 +1,5 @@
 package com.mkavaktech.reciperoamer.data.entities
 
 data class FoodByCategory(
-    val idMeal: String,
-    val strMeal: String,
-    val strMealThumb: String
+    val idMeal: String, val strMeal: String, val strMealThumb: String
 )

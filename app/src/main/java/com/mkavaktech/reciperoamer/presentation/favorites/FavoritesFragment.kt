@@ -15,23 +15,21 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.google.android.material.snackbar.Snackbar
+import com.mkavaktech.reciperoamer.R
 
 import com.mkavaktech.reciperoamer.data.entities.Meal
 
 import com.mkavaktech.reciperoamer.databinding.FragmentFavouritesBinding
 import com.mkavaktech.reciperoamer.presentation.food_details.FoodDetailsActivity
-import com.mkavaktech.reciperoamer.presentation.home.HomeFragment
+import com.mkavaktech.reciperoamer.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class FavouritesFragment : Fragment(), FavoriteFoodsAdapter.FavoriteFoodsListener
-{
+class FavouritesFragment : Fragment(), FavoriteFoodsAdapter.FavoriteFoodsListener {
     private lateinit var binding: FragmentFavouritesBinding
     private val favoritesViewModel: FavoritesViewModel by viewModels()
-
     private lateinit var favoriteFoodsAdapter: FavoriteFoodsAdapter
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -49,14 +47,15 @@ class FavouritesFragment : Fragment(), FavoriteFoodsAdapter.FavoriteFoodsListene
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         observeFavFoodList()
-
     }
 
     private fun observeFavFoodList() {
         favoritesViewModel.favoritesFoodLiveData.observe(viewLifecycleOwner) { favFoodList ->
             favoriteFoodsAdapter.setFavFood(favFoodList as ArrayList<Meal>)
+            checkNotFoundAnim()
         }
     }
+
 
     private fun setupRecyclerView() {
         favoriteFoodsAdapter = FavoriteFoodsAdapter(this)
@@ -66,11 +65,22 @@ class FavouritesFragment : Fragment(), FavoriteFoodsAdapter.FavoriteFoodsListene
         }
     }
 
+    private fun checkNotFoundAnim() {
+        val favAnimationView = binding.favAnimationView
+        if (favoriteFoodsAdapter.itemCount == 0) {
+            favAnimationView.visibility = View.VISIBLE
+            favAnimationView.playAnimation()
+        } else {
+            favAnimationView.cancelAnimation()
+            favAnimationView.visibility = View.INVISIBLE
+        }
+    }
+
     override fun onFavoriteFoodsClick(meal: Meal) {
         val intent = Intent(activity, FoodDetailsActivity::class.java)
-        intent.putExtra(HomeFragment.foodId, meal.idMeal)
-        intent.putExtra(HomeFragment.foodName, meal.strMeal)
-        intent.putExtra(HomeFragment.foodThumb, meal.strMealThumb)
+        intent.putExtra(Constants.Details.FOOD_ID, meal.idMeal)
+        intent.putExtra(Constants.Details.FOOD_NAME, meal.strMeal)
+        intent.putExtra(Constants.Details.FOOD_THUMB, meal.strMealThumb)
         startActivity(intent)
     }
 
@@ -78,13 +88,18 @@ class FavouritesFragment : Fragment(), FavoriteFoodsAdapter.FavoriteFoodsListene
         val deletedFood: Meal = favoriteFoodsAdapter.foodList()[adapterPosition]
         favoriteFoodsAdapter.removeItem(adapterPosition)
         Snackbar.make(
-            binding.favFoodsRecView, "Removed from favorites: " + deletedFood.strMeal, Snackbar.LENGTH_LONG
+            binding.favFoodsRecView,
+            "${getString(R.string.removed_from_favorites)}: " + deletedFood.strMeal,
+            Snackbar.LENGTH_LONG
         ).setAction(
-            "Undo"
+            getString(R.string.undo)
         ) {
             favoriteFoodsAdapter.addItem(adapterPosition, deletedFood)
             favoritesViewModel.addToFavoriteFood(deletedFood)
+            checkNotFoundAnim()
         }.setBackgroundTint(Color.RED).setActionTextColor(Color.BLACK).show()
+
         favoritesViewModel.removeFavoriteFood(deletedFood)
+        checkNotFoundAnim()
     }
 }

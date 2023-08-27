@@ -26,7 +26,6 @@ class FoodDetailsViewModel @Inject constructor(private val foodRepository: FoodR
     val foodDetailsLiveData: LiveData<Meal> = _foodDetailsLiveData
     val foodFavoriteLiveData: LiveData<Meal?> = _foodFavoriteLiveData
 
-
     fun getFoodDetails(foodId: String) {
         viewModelScope.launch {
             when (val response = foodRepository.getFoodDetails(foodId)) {

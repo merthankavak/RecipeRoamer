@@ -5,11 +5,13 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.mkavaktech.reciperoamer.R
 import com.mkavaktech.reciperoamer.databinding.ActivityMainBinding
 import com.mkavaktech.reciperoamer.presentation.onboarding.OnboardingActivity
+import com.mkavaktech.reciperoamer.utils.Constants
 import com.mkavaktech.reciperoamer.utils.Helper
 import dagger.hilt.android.AndroidEntryPoint
 import io.ak1.BubbleTabBar
@@ -19,23 +21,25 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var bubbleTabBar: BubbleTabBar
     private lateinit var navController: NavController
+    private lateinit var navHostFragment: NavHostFragment
 
     private lateinit var sharedPreferences: SharedPreferences
 
-    companion object {
-        const val PREF_KEY_ONBOARDING = "onboarding"
-        const val PREF_KEY_ONBOARDING_SHOWN = "onboarding_shown"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+        Thread.sleep(3000)
+        installSplashScreen()
+
         setContentView(binding.root)
 
-        sharedPreferences = getSharedPreferences(PREF_KEY_ONBOARDING, Context.MODE_PRIVATE)
+        sharedPreferences =
+            getSharedPreferences(Constants.Onboarding.PREF_KEY_ONBOARDING, Context.MODE_PRIVATE)
         decideAndNavigate()
 
-        val navHostFragment =
+        navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         navController = navHostFragment.navController
 
@@ -49,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isOnboardingShown(): Boolean {
-        return sharedPreferences.getBoolean(PREF_KEY_ONBOARDING_SHOWN, false)
+        return sharedPreferences.getBoolean(Constants.Onboarding.PREF_KEY_ONBOARDING_SHOWN, false)
     }
 
     private fun setupBottomNavBar() {

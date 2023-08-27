@@ -26,7 +26,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-
                 <TextView
                     android:id="@+id/homeTextView"
                     android:layout_width="0dp"
@@ -34,7 +33,7 @@
                     android:layout_weight="1"
                     android:text="@string/app_name"
                     android:textColor="@color/orange"
-                    android:textSize="@dimen/_20ssp"
+                    android:textSize="@dimen/_18ssp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -44,7 +43,6 @@
                     android:contentDescription="@string/search"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_search" />
-
 
             </LinearLayout>
 
@@ -80,7 +78,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/orange"
-                        android:contentDescription="@string/food"
+                        android:contentDescription="@string/food_image"
                         android:scaleType="centerCrop" />
 
                     <View

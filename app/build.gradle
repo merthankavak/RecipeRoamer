@@ -5,7 +5,22 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+def keystorePropertiesFile = rootProject.file("key.properties")
+
+def keystoreProperties = new Properties()
+
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+
 android {
+    signingConfigs {
+        config {
+            keyAlias keystoreProperties["keyAlias"] as String
+            keyPassword keystoreProperties["keyPassword"] as String
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
+        }
+    }
     compileSdk 34
 
     defaultConfig {
@@ -13,15 +28,19 @@ android {
         minSdk 21
         targetSdk 34
         versionCode 1
-        versionName "1.0"
-
+        versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.debug
         }
     }
     compileOptions {
@@ -97,6 +116,9 @@ dependencies {
     // In App Review
     implementation("com.google.android.play:review:$in_app_review_version")
     implementation("com.google.android.play:review-ktx:$in_app_review_version")
+
+    // Splash Screen
+    implementation("androidx.core:core-splashscreen:$splash_screen_version")
 }
 
 kapt {
